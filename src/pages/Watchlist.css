@@ -1,0 +1,59 @@
+.watchlist-page {
+  padding: 2rem;
+  color: white;
+}
+
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.movie-card {
+  background-color: #1f1f1f;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(0, 255, 200, 0.2);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+}
+
+.movie-info {
+  padding: 0.5rem;
+}
+
+.movie-info h3 {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+}
+
+.movie-info p {
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.movie-info button {
+  margin-top: 0.5rem;
+  background-color: #ff5050;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.movie-info button:hover {
+  background-color: #e63e3e;
+}
+
+.empty {
+  padding: 2rem;
+  color: #aaa;
+  font-style: italic;
+}
