@@ -1,5 +1,5 @@
-import { useWatchlist } from "../features/watchlist/useWatchlist";
-import WatchlistItem from "../features/watchlist/WatchlistItem";
+import { useWatchlist } from '../features/watchlist/useWatchlist';
+import WatchlistItem from '../features/watchlist/WatchlistItem';
 
 const Watchlist = () => {
   const { watchlist, removeMovie, toggleWatched, updateNotes } = useWatchlist();

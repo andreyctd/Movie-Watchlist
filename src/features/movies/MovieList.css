@@ -1,25 +1,6 @@
 .movie-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.movie-card {
-  background-color: #1e1e1e;
-  padding: 1rem;
-  border-radius: 10px;
-  width: 200px;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(0, 255, 200, 0.2);
-}
-
-.movie-card img {
-  width: 100%;
-  border-radius: 5px;
-}
-
-.movie-card h3 {
-  margin: 0.5rem 0;
-  font-size: 1.1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
 }

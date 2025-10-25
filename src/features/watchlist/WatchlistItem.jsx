@@ -1,20 +1,20 @@
-import { useState } from "react";
-import "./WatchlistItem.css";
+import { useState } from 'react';
+import './WatchlistItem.css';
 
 const WatchlistItem = ({ movie, onDelete, onToggle, onUpdateNotes }) => {
-  const [notes, setNotes] = useState(movie.notes || "");
+  const [notes, setNotes] = useState(movie.notes || '');
 
   return (
     <div className="movie-card">
       <img
-        src={movie.Poster !== "N/A" ? movie.Poster : "/placeholder.jpg"}
+        src={movie.Poster !== 'N/A' ? movie.Poster : '/placeholder.jpg'}
         alt={movie.Title}
       />
       <h3>{movie.Title}</h3>
       <p>{movie.Year}</p>
 
       <button onClick={onToggle}>
-        {movie.watched ? "Mark Unwatched" : "Mark Watched"}
+        {movie.watched ? 'Mark Unwatched' : 'Mark Watched'}
       </button>
 
       <textarea

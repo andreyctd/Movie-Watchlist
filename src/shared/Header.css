@@ -1,17 +1,21 @@
+header {
+  background-color: #1e1e2f;
+  padding: 1rem 0;
+}
+
 nav {
-  background-color: #1f1f1f;
-  padding: 1rem;
   display: flex;
-  gap: 1rem;
+  justify-content: center;
+  gap: 2rem;
 }
 
 nav a {
-  color: #aaa;
-  font-weight: bold;
-  border-bottom: 2px solid #00ffc8;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.1rem;
 }
 
-nav a.active {
-  color: #aaa;
-  border-bottom: 2px solid #00ffc8;
+nav a.active-link {
+  color: #ff6b6b;
+  border-bottom: 2px solid #ff6b6b;
 }
