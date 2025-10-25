@@ -1,54 +1,41 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-
-const STORAGE_KEY = "movie_watchlist";
+import { createContext, useContext, useState, useEffect } from 'react';
 
 const WatchlistContext = createContext();
 
 export const WatchlistProvider = ({ children }) => {
-  const [watchlist, setWatchlist] = useState([]);
+  const [watchlist, setWatchlist] = useState(() => {
+    // Load from localStorage if available
+    const saved = localStorage.getItem('watchlist');
+    return saved ? JSON.parse(saved) : [];
+  });
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      setWatchlist(JSON.parse(stored));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(watchlist));
+    localStorage.setItem('watchlist', JSON.stringify(watchlist));
   }, [watchlist]);
 
   const addMovie = (movie) => {
-    if (!watchlist.some((m) => m.imdbID === movie.imdbID)) {
-      setWatchlist([...watchlist, movie]);
-    }
+    setWatchlist((prev) => [...prev, movie]);
   };
 
   const removeMovie = (id) => {
-    setWatchlist(watchlist.filter((m) => m.imdbID !== id));
+    setWatchlist((prev) => prev.filter((movie) => movie.imdbID !== id));
   };
 
-  const toggleWatched = (id) => {
-    setWatchlist(
-      watchlist.map((m) =>
-        m.imdbID === id ? { ...m, watched: !m.watched } : m
+  const updateMovie = (id, updatedData) => {
+    setWatchlist((prev) =>
+      prev.map((movie) =>
+        movie.imdbID === id ? { ...movie, ...updatedData } : movie
       )
     );
   };
 
-  const updateNotes = (id, notes) => {
-    setWatchlist(watchlist.map((m) => (m.imdbID === id ? { ...m, notes } : m)));
-  };
-
   return (
     <WatchlistContext.Provider
-      value={{ watchlist, addMovie, removeMovie, toggleWatched, updateNotes }}
+      value={{ watchlist, addMovie, removeMovie, updateMovie }}
     >
       {children}
     </WatchlistContext.Provider>
   );
 };
 
-  export const useWatchlist = () => {
-  return useContext(WatchlistContext);
-};
+export const useWatchlist = () => useContext(WatchlistContext);

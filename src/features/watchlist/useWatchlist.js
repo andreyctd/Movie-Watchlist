@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-const STORAGE_KEY = "movie_watchlist";
+const STORAGE_KEY = 'movie_watchlist';
 
 export function useWatchlist() {
   const [watchlist, setWatchlist] = useState([]);
@@ -17,11 +17,6 @@ export function useWatchlist() {
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(watchlist));
   }, [watchlist]);
-
-  /*   const addMovie = (movie) => {
-    if (watchlist.some((item) => item.imdbID === movie.imdbID)) return;
-    setWatchlist([...watchlist, { ...movie, watched: false, notes: "" }]);
-  };   */
 
   // Add to watchlist (if not already there)
   const addMovie = (movie) => {

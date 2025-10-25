@@ -1,12 +1,10 @@
-import React from "react";
-import "./Footer.css";
+import React from 'react';
+import './Footer.css';
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <p>
-        🎬 Movie Watchlist App &copy; {new Date().getFullYear()}
-      </p>
+      <p>🎬 Movie Watchlist App &copy; {new Date().getFullYear()}</p>
     </footer>
   );
 };

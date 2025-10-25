@@ -1,16 +1,72 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This template provides a minimal setup to get React working in Vite with Prettier and some ESLint rules.
 
-Currently, two official plugins are available:
+The app allows users to search movies, add to a personal watchlist, edit or remove entries and manage a personal watchlist stored in the browser using localStorage.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# My React Vite App
 
-## React Compiler
+A modern React application built with [Vite](https://vitejs.dev/), ESLint, and Prettier.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Installation
 
-## Expanding the ESLint configuration
+1. Clone the repository.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+
+2. Install dependencies.
+
+npm install
+
+3. Set up environment variables
+
+Create a .env file in the root directory:
+
+VITE_MOVIE_API_KEY=your_omdb_api_key_here
+
+4. Run the Development Server.
+
+npm run dev
+
+The app will be available at http://localhost:5173 by default.
+
+5. Code Quality Tools.
+
+ESLint: Linting and code quality.
+Prettier: Code formatting.
+Vite: Fast build tool and dev server.
+
+🧩 Features
+
+🔍 Search movies using the OMDb API
+
+➕ Add/remove movies from your watchlist
+
+💾 Watchlist persists in localStorage
+
+⚡ Fast HMR with Vite
+
+🧹 Linting with ESLint
+
+🎨 Formatting with Prettier
+
+🧭 Navigation with React Router DOM
+
+🌐 API Details
+
+Service: OMDb API
+
+Base URL:
+
+https://www.omdbapi.com/
+
+Example Request:
+
+GET https://www.omdbapi.com/?t=inception&apikey=your_api_key
+
+Credentials:
+Register for a free API key here
+and store it in .env as:
+
+VITE_MOVIE_API_KEY=your_api_key

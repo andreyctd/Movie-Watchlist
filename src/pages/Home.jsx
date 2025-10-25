@@ -1,6 +1,6 @@
-import { useState } from "react";
-import MovieSearch from "../features/movies/MovieSearch";
-import MovieList from "../features/movies/MovieList";
+import { useState } from 'react';
+import MovieSearch from '../features/Movies/MovieSearch';
+import MovieList from '../features/movies/MovieList';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
