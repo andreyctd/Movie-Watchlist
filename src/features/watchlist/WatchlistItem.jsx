@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import './WatchlistItem.css';
 
 const WatchlistItem = ({ movie, onDelete, onToggle, onUpdateNotes }) => {
-  const [notes, setNotes] = useState(movie.notes || '');
+  const [note, setNote] = useState(movie.note || '');
 
   return (
     <div className="movie-card">
@@ -19,9 +18,9 @@ const WatchlistItem = ({ movie, onDelete, onToggle, onUpdateNotes }) => {
 
       <textarea
         placeholder="Add notes..."
-        value={notes}
+        value={note}
         onChange={(e) => {
-          setNotes(e.target.value);
+          setNote(e.target.value);
           onUpdateNotes(e.target.value);
         }}
       ></textarea>

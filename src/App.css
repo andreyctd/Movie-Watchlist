@@ -6,6 +6,14 @@
   padding: 2rem;
 }
 
+main {
+  flex: 1; /* take up available space between header and footer */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
 /* ===== FORM (SEARCH) STYLING ===== */
 form {
   display: grid;

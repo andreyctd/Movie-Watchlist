@@ -5,15 +5,22 @@ import './MovieCard.css';
 const MovieCard = ({ movie }) => {
   const { watchlist, addMovie, removeMovie, updateMovie } = useWatchlist();
   const [details, setDetails] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedTitle, setEditedTitle] = useState(movie.Title);
+  const [isAddingNote, setIsAddingNote] = useState(false);
+  const [note, setNote] = useState(movie.note || '');
 
   const isInWatchlist = watchlist.some((m) => m.imdbID === movie.imdbID);
 
+  // Get the current saved note (if updated externally)
+  const savedNote =
+    watchlist.find((m) => m.imdbID === movie.imdbID)?.note || '';
+
+  // Fetch extra movie info from OMDb
   useEffect(() => {
     const fetchDetails = async () => {
       const res = await fetch(
-        `https://www.omdbapi.com/?apikey=${import.meta.env.VITE_OMDB_API_KEY}&i=${movie.imdbID}`
+        `https://www.omdbapi.com/?apikey=${
+          import.meta.env.VITE_OMDB_API_KEY
+        }&i=${movie.imdbID}`
       );
       const data = await res.json();
       setDetails(data);
@@ -22,9 +29,16 @@ const MovieCard = ({ movie }) => {
     fetchDetails();
   }, [movie.imdbID]);
 
-  const handleSave = () => {
-    updateMovie(movie.imdbID, { Title: editedTitle });
-    setIsEditing(false);
+  // Save note to watchlist
+  const handleSaveNote = () => {
+    updateMovie(movie.imdbID, { note });
+    setIsAddingNote(false);
+  };
+
+  // Cancel note editing (revert unsaved changes)
+  const handleCancelNote = () => {
+    setNote(savedNote);
+    setIsAddingNote(false);
   };
 
   return (
@@ -34,15 +48,7 @@ const MovieCard = ({ movie }) => {
         alt={movie.Title}
       />
 
-      {isEditing ? (
-        <input
-          value={editedTitle}
-          onChange={(e) => setEditedTitle(e.target.value)}
-        />
-      ) : (
-        <h3>{movie.Title}</h3>
-      )}
-
+      <h3>{movie.Title}</h3>
       <p>{movie.Year}</p>
 
       {details && (
@@ -59,16 +65,40 @@ const MovieCard = ({ movie }) => {
         </>
       )}
 
-      <div className="movie-card-buttons">
-        {isEditing ? (
-          <>
-            <button onClick={handleSave}>Save</button>
-            <button onClick={() => setIsEditing(false)}>Cancel</button>
-          </>
-        ) : (
-          <button onClick={() => setIsEditing(true)}>Edit</button>
-        )}
+      {/* ----- Notes Section ----- */}
+      {isInWatchlist && (
+        <div className="movie-notes">
+          {isAddingNote ? (
+            <>
+              <textarea
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
+                placeholder="Add your personal note..."
+              />
+              <div className="note-buttons">
+                <button onClick={handleSaveNote}>Save Note</button>
+                <button onClick={() => setIsAddingNote(false)}>Cancel</button>
+              </div>
+            </>
+          ) : (
+            <>
+              {savedNote ? (
+                <p className="note-display">
+                  <strong>Note:</strong> {savedNote}
+                </p>
+              ) : (
+                <p className="note-empty">No note added yet.</p>
+              )}
+              <button onClick={() => setIsAddingNote(true)}>
+                {savedNote ? 'Edit Note' : 'Add Note'}
+              </button>
+            </>
+          )}
+        </div>
+      )}
 
+      {/* ----- Watchlist Buttons ----- */}
+      <div className="movie-card-buttons">
         {isInWatchlist ? (
           <button onClick={() => removeMovie(movie.imdbID)}>Remove</button>
         ) : (
