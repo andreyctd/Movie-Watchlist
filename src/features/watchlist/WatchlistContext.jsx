@@ -14,7 +14,9 @@ export const WatchlistProvider = ({ children }) => {
   }, [watchlist]);
 
   const addMovie = (movie) => {
-    setWatchlist((prev) => [...prev, movie]);
+    if (!watchlist.some((m) => m.imdbID === movie.imdbID)) {
+      setWatchlist((prev) => [...prev, { ...movie, note: "" }]);
+    }
   };
 
   const removeMovie = (id) => {

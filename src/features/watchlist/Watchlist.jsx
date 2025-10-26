@@ -15,8 +15,10 @@ const Watchlist = () => {
             key={movie.imdbID}
             movie={movie}
             onDelete={() => removeMovie(movie.imdbID)}
-            onToggle={() => toggleWatched(movie.imdbID)}
-            onUpdateNotes={(notes) => updateNotes(movie.imdbID, notes)}
+            onToggle={() =>
+              toggleWatched(movie.imdbID, { watched: !movie.watched })
+            }
+            onUpdateNotes={(note) => updateNotes(movie.imdbID, note)}
           />
         ))}
       </div>
