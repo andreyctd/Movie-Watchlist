@@ -1,30 +1,25 @@
 import React from 'react';
-import './Watchlist.css';
 import { useWatchlist } from '../features/watchlist/WatchlistContext';
+import WatchlistItem from '../features/Watchlist/WatchlistItem';
+import './Watchlist.css';
 
 const Watchlist = () => {
-  const { watchlist, removeMovie } = useWatchlist();
+  const { watchlist, removeMovie, toggleWatched, updateMovie } = useWatchlist();
 
-  if (watchlist.length === 0) {
-    return <p>Your watchlist is empty.</p>;
-  }
+  if (watchlist.length === 0) return <p>Your watchlist is empty.</p>;
 
   return (
     <div className="watchlist-page">
       <h1>My Watchlist</h1>
       <div className="movie-list">
         {watchlist.map((movie) => (
-          <div className="movie-card" key={movie.imdbID}>
-            <img
-              src={movie.Poster !== 'N/A' ? movie.Poster : '/placeholder.jpg'}
-              alt={movie.Title}
-            />
-            <div className="movie-info">
-              <h3>{movie.Title}</h3>
-              <p>{movie.Year}</p>
-              <button onClick={() => removeMovie(movie.imdbID)}>Remove</button>
-            </div>
-          </div>
+          <WatchlistItem
+            key={movie.imdbID}
+            movie={movie}
+            onDelete={() => removeMovie(movie.imdbID)}
+            onToggle={() => toggleWatched(movie.imdbID)}
+            onUpdateNotes={(note) => updateMovie(movie.imdbID, { note })}
+          />
         ))}
       </div>
     </div>

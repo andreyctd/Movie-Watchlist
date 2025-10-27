@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './WatchlistItem.css';
 
 const WatchlistItem = ({ movie, onDelete, onToggle, onUpdateNotes }) => {
   const [note, setNote] = useState(movie.note || '');
