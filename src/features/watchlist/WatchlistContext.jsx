@@ -15,7 +15,7 @@ export const WatchlistProvider = ({ children }) => {
 
   const addMovie = (movie) => {
     if (!watchlist.some((m) => m.imdbID === movie.imdbID)) {
-      setWatchlist((prev) => [...prev, { ...movie, note: "" }]);
+      setWatchlist((prev) => [...prev, { ...movie, note: '' }]);
     }
   };
 
@@ -31,9 +31,26 @@ export const WatchlistProvider = ({ children }) => {
     );
   };
 
+  const updateNotes = (id, note) => updateMovie(id, { note });
+
+  const toggleWatched = (id) => {
+    setWatchlist((prev) =>
+      prev.map((movie) =>
+        movie.imdbID === id ? { ...movie, watched: !movie.watched } : movie
+      )
+    );
+  };
+
   return (
     <WatchlistContext.Provider
-      value={{ watchlist, addMovie, removeMovie, updateMovie }}
+      value={{
+        watchlist,
+        addMovie,
+        removeMovie,
+        updateMovie,
+        toggleWatched,
+        updateNotes,
+      }}
     >
       {children}
     </WatchlistContext.Provider>
