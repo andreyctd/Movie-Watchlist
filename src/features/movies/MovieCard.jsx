@@ -65,7 +65,6 @@ const MovieCard = ({ movie }) => {
         </>
       )}
 
-      {/* ----- Notes Section ----- */}
       {isInWatchlist && (
         <div className="movie-notes">
           {isAddingNote ? (
@@ -97,7 +96,6 @@ const MovieCard = ({ movie }) => {
         </div>
       )}
 
-      {/* ----- Watchlist Buttons ----- */}
       <div className="movie-card-buttons">
         {isInWatchlist ? (
           <button onClick={() => removeMovie(movie.imdbID)}>Remove</button>

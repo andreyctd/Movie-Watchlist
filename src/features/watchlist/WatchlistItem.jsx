@@ -1,7 +1,19 @@
 import { useState } from 'react';
+import './WatchlistItem.css';
 
 const WatchlistItem = ({ movie, onDelete, onToggle, onUpdateNotes }) => {
   const [note, setNote] = useState(movie.note || '');
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleSave = () => {
+    onUpdateNotes(note);
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    setNote(movie.note || '');
+    setIsEditing(false);
+  };
 
   return (
     <div className="movie-card">
@@ -16,14 +28,28 @@ const WatchlistItem = ({ movie, onDelete, onToggle, onUpdateNotes }) => {
         {movie.watched ? 'Mark Unwatched' : 'Mark Watched'}
       </button>
 
-      <textarea
-        placeholder="Add notes..."
-        value={note}
-        onChange={(e) => {
-          setNote(e.target.value);
-          onUpdateNotes(e.target.value);
-        }}
-      ></textarea>
+      <div className="movie-notes">
+        {isEditing ? (
+          <>
+            <textarea
+              placeholder="Add notes..."
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+            />
+            <div className="note-buttons">
+              <button onClick={handleSave}>Save</button>
+              <button onClick={handleCancel}>Cancel</button>
+            </div>
+          </>
+        ) : (
+          <>
+            <p>{movie.note ? movie.note : 'No note added.'}</p>
+            <button onClick={() => setIsEditing(true)}>
+              {movie.note ? 'Edit Note' : 'Add Note'}
+            </button>
+          </>
+        )}
+      </div>
 
       <button onClick={onDelete} className="button delete">
         Remove
