@@ -1,19 +1,13 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with Prettier and some ESLint rules.
+Movie-Watchlist
 
 The app allows users to search movies, add to a personal watchlist, edit or remove entries and manage a personal watchlist stored in the browser using localStorage.
 
-# My React Vite App
-
-A modern React application built with [Vite](https://vitejs.dev/), ESLint, and Prettier.
-
-## Installation
+Installation
 
 1. Clone the repository.
 
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/andreyctd/Movie-Watchlist.git
+cd Movie-Watchlist
 
 2. Install dependencies.
 
@@ -23,7 +17,8 @@ npm install
 
 Create a .env file in the root directory:
 
-VITE_MOVIE_API_KEY=your_omdb_api_key_here
+VITE_MOVIE_API_KEY=dcdb49d6
+http://www.omdbapi.com/?i=tt3896198&apikey=dcdb49d6
 
 4. Run the Development Server.
 
@@ -37,23 +32,23 @@ ESLint: Linting and code quality.
 Prettier: Code formatting.
 Vite: Fast build tool and dev server.
 
-🧩 Features
+Features
 
-🔍 Search movies using the OMDb API
+Search movies using the OMDb API
 
-➕ Add/remove movies from your watchlist
+Add/remove movies from your watchlist
 
-💾 Watchlist persists in localStorage
+Watchlist persists in localStorage
 
-⚡ Fast HMR with Vite
+Fast HMR with Vite
 
-🧹 Linting with ESLint
+Linting with ESLint
 
-🎨 Formatting with Prettier
+Formatting with Prettier
 
-🧭 Navigation with React Router DOM
+Navigation with React Router DOM
 
-🌐 API Details
+API Details
 
 Service: OMDb API
 
@@ -63,10 +58,10 @@ https://www.omdbapi.com/
 
 Example Request:
 
-GET https://www.omdbapi.com/?t=inception&apikey=your_api_key
+GET http://www.omdbapi.com/?i=tt3896198&apikey=dcdb49d6
 
 Credentials:
 Register for a free API key here
 and store it in .env as:
 
-VITE_MOVIE_API_KEY=your_api_key
+VITE_MOVIE_API_KEY=dcdb49d6
